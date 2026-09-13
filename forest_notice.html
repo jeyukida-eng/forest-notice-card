@@ -1,0 +1,484 @@
+<meta charset="UTF-8" />
+<title>Healing Forest Field Card</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Serif+JP:wght@500;700&family=Noto+Serif+SC:wght@500;700&family=Noto+Serif:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans:wght@400;500;700&display=swap">
+
+<style>
+  :root{
+    --paper:#F5F1E6;
+    --card:#FFFFFF;
+    --card-soft:#ECE6D6;
+    --ink:#2B2620;
+    --ink-soft:#736C5D;
+    --moss:#4B6B3F;
+    --moss-soft:#E3EADC;
+    --clay:#B1592F;
+    --line:#DAD1BC;
+    --shadow:0 1px 2px rgba(43,38,32,.06), 0 8px 20px -10px rgba(43,38,32,.18);
+    --icon-chip:#F1ECDF;
+    --radius-lg:22px;
+    --radius-md:14px;
+    --radius-sm:9px;
+    --font-display:'Noto Serif KR',serif;
+    --font-body:'Noto Sans KR',sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#1C1A15;
+      --card:#262320;
+      --card-soft:#332F27;
+      --ink:#F1ECDF;
+      --ink-soft:#B3AB98;
+      --moss:#8FC078;
+      --moss-soft:#2E3B29;
+      --clay:#E58F5F;
+      --line:#463F33;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 24px -12px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#1C1A15;
+    --card:#262320;
+    --card-soft:#332F27;
+    --ink:#F1ECDF;
+    --ink-soft:#B3AB98;
+    --moss:#8FC078;
+    --moss-soft:#2E3B29;
+    --clay:#E58F5F;
+    --line:#463F33;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 24px -12px rgba(0,0,0,.55);
+  }
+
+  html[data-lang="ko"]{ --font-display:'Noto Serif KR',serif; --font-body:'Noto Sans KR',sans-serif; }
+  html[data-lang="en"]{ --font-display:'Noto Serif',Georgia,serif; --font-body:'Noto Sans',Arial,sans-serif; }
+  html[data-lang="ja"]{ --font-display:'Noto Serif JP',serif; --font-body:'Noto Sans JP',sans-serif; }
+  html[data-lang="zh"]{ --font-display:'Noto Serif SC',serif; --font-body:'Noto Sans SC',sans-serif; }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    display:flex;
+    justify-content:center;
+    padding:28px 14px 48px;
+  }
+  .screen{
+    width:100%;
+    max-width:448px;
+  }
+
+  /* ---- top bar ---- */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .brand img{
+    height:26px;
+    width:auto;
+    display:block;
+  }
+  .brand span{
+    font-family:'Noto Sans KR',sans-serif;
+    font-weight:800;
+    font-size:14px;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    white-space:nowrap;
+  }
+  .langs{
+    display:flex;
+    background:var(--card-soft);
+    border-radius:999px;
+    padding:3px;
+    gap:2px;
+  }
+  .langs button{
+    appearance:none;
+    border:none;
+    background:transparent;
+    color:var(--ink-soft);
+    font-family:var(--font-body);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.02em;
+    padding:6px 10px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease;
+  }
+  .langs button:focus-visible{ outline:2px solid var(--moss); outline-offset:2px; }
+  .langs button[aria-pressed="true"]{
+    background:var(--moss);
+    color:#fff;
+  }
+
+  /* ---- card ---- */
+  .card{
+    background:var(--card);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+
+  .hero{
+    padding:26px 24px 22px;
+  }
+  .badge{
+    display:inline-block;
+    font-family:var(--font-body);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--clay);
+    background:color-mix(in srgb, var(--clay) 14%, transparent);
+    padding:4px 10px;
+    border-radius:999px;
+    margin-bottom:14px;
+  }
+  .eyebrow{
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--moss);
+    margin:0 0 8px;
+  }
+  h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:26px;
+    line-height:1.32;
+    margin:0 0 6px;
+    text-wrap:balance;
+    color:var(--ink);
+  }
+  .rule{
+    width:64px;
+    height:0;
+    border-top:2px dashed var(--line);
+    margin:14px 0 16px;
+  }
+  .intro p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    max-width:36em;
+  }
+  .intro p:last-child{ margin-bottom:0; }
+
+  /* ---- field guide sections ---- */
+  .guide{
+    padding:4px 24px 6px;
+  }
+  .section{
+    padding:18px 0;
+    border-top:1px solid var(--line);
+  }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:14px;
+  }
+  .section-title{
+    font-family:var(--font-display);
+    font-size:15px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .section-count{
+    font-size:11.5px;
+    color:var(--ink-soft);
+    font-variant-numeric:tabular-nums;
+  }
+  .items{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(84px,1fr));
+    gap:12px;
+  }
+  .item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    text-align:center;
+  }
+  .chip{
+    width:100%;
+    aspect-ratio:1;
+    max-width:92px;
+    background:var(--icon-chip);
+    border-radius:var(--radius-md);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:12px;
+  }
+  .chip img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+  }
+  .item-name{
+    font-size:12.5px;
+    font-weight:500;
+    line-height:1.3;
+    color:var(--ink);
+  }
+
+  /* ---- footer ---- */
+  .footer{
+    padding:18px 24px 26px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .footer-text p{
+    margin:0 0 6px;
+    font-size:12.5px;
+    line-height:1.6;
+    color:var(--ink-soft);
+  }
+  .footer-text p:last-child{ margin-bottom:0; }
+  .qr-wrap{
+    flex:0 0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+  }
+  .qr-wrap img{
+    width:64px;
+    height:64px;
+    border-radius:8px;
+    background:#fff;
+    padding:4px;
+    box-shadow:var(--shadow);
+  }
+  .qr-cap{
+    font-size:10px;
+    color:var(--ink-soft);
+    text-align:center;
+    max-width:76px;
+    line-height:1.3;
+  }
+
+  .foot-credit{
+    text-align:center;
+    margin-top:16px;
+    font-size:11px;
+    color:var(--ink-soft);
+    opacity:.75;
+  }
+
+  @media (max-width:360px){
+    .hero{ padding:22px 18px 18px; }
+    .guide{ padding:2px 18px 4px; }
+    .footer{ padding:16px 18px 22px; }
+    h1{ font-size:23px; }
+  }
+</style>
+
+<div class="screen">
+  <div class="topbar">
+    <div class="brand">
+      <img src="icons/mark.png" alt="" />
+      <span>제육이다</span>
+    </div>
+    <div class="langs" role="tablist" aria-label="Language">
+      <button type="button" data-lang-btn="ko" aria-pressed="true">한국어</button>
+      <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang-btn="ja" aria-pressed="false">日本語</button>
+      <button type="button" data-lang-btn="zh" aria-pressed="false">中文</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="hero">
+      <span class="badge" data-i18n="badge"></span>
+      <p class="eyebrow" data-i18n="eyebrow"></p>
+      <h1 data-i18n="title"></h1>
+      <div class="rule"></div>
+      <div class="intro" data-i18n-html="intro"></div>
+    </div>
+
+    <div class="guide" data-i18n-sections></div>
+
+    <div class="footer">
+      <div class="footer-text" data-i18n-html="footer"></div>
+      <div class="qr-wrap">
+        <img src="icons/qr.png" alt="QR" />
+        <span class="qr-cap" data-i18n="qrCaption"></span>
+      </div>
+    </div>
+  </div>
+
+  <p class="foot-credit" data-i18n="credit"></p>
+</div>
+
+<script>
+const CATEGORY_ORDER = ["plants","trees","scenery","wildlife"];
+
+const ITEMS = {
+  plants: [
+    {icon:"raspberry.png", ko:"산딸기", en:"Wild Raspberry", ja:"ヤマイチゴ", zh:"山莓"},
+    {icon:"leopard.png", ko:"털머위", en:"Leopard Plant", ja:"ツワブキ", zh:"大吴风草"},
+    {icon:"garlic.png", ko:"제주산마늘", en:"Jeju Wild Garlic", ja:"ギョウジャニンニク", zh:"济州野蒜"},
+    {icon:"chloranthus.png", ko:"홀아비꽃대", en:"Chloranthus", ja:"ヒトリシズカ", zh:"银线草"},
+    {icon:"bracken.png", ko:"고사리", en:"Bracken Fern", ja:"ワラビ", zh:"蕨菜"}
+  ],
+  trees: [
+    {icon:"oak.png", ko:"붉가시나무", en:"Evergreen Oak", ja:"アカガシ", zh:"赤皮青冈"},
+    {icon:"hinoki.png", ko:"편백나무", en:"Hinoki Cypress", ja:"ヒノキ", zh:"扁柏"}
+  ],
+  scenery: [
+    {icon:"halla.png", ko:"한라산", en:"Mt. Halla", ja:"ハルラ山", zh:"汉拿山"},
+    {icon:"stonewall.png", ko:"돌담", en:"Stone Wall", ja:"石垣", zh:"石墙"},
+    {icon:"signpost.png", ko:"이정표", en:"Signpost", ja:"道しるべ", zh:"路标"}
+  ],
+  wildlife: [
+    {icon:"whiteeye.png", ko:"동박새", en:"Warbling White-eye", ja:"メジロ", zh:"绣眼鸟"},
+    {icon:"deer.png", ko:"노루 가족", en:"Roe Deer Family", ja:"ノロジカの家族", zh:"狍子一家"},
+    {icon:"tracks.png", ko:"노루와 새 발자국", en:"Deer & Bird Tracks", ja:"ノロジカと鳥の足跡", zh:"狍子和鸟的脚印"}
+  ]
+};
+
+const SECTION_NAMES = {
+  ko:{plants:"식물", trees:"나무", scenery:"풍경", wildlife:"야생동물"},
+  en:{plants:"Plants", trees:"Trees", scenery:"Scenery", wildlife:"Wildlife"},
+  ja:{plants:"植物", trees:"木", scenery:"風景", wildlife:"野生動物"},
+  zh:{plants:"植物", trees:"树木", scenery:"风景", wildlife:"野生动物"}
+};
+
+const CONTENT = {
+  ko:{
+    badge:"안내",
+    eyebrow:"서귀포 치유의 숲",
+    title:"숲을 담아가는 작은 방법",
+    intro:[
+      "서귀포 치유의 숲에서 만날 수 있는 생명들을 한 장의 스티커에 담았습니다.",
+      "숲을 이루는 작은 생명들을 틴케이스에 붙여서 세상에 하나뿐인 나만의 틴케이스를 만들어 보세요.",
+      "오늘의 도시락이 제주도를 기억하는 작은 기념품이 되기를 바랍니다."
+    ],
+    footer:[
+      "한 번 사용한 틴케이스는 식품 보관용으로 재사용을 권장하지 않습니다.",
+      "작은 소품함, 씨앗 보관함, 스티커·티켓 보관함 등으로 새롭게 활용해 보세요."
+    ],
+    qrCaption:"스캔하고 더 알아보기",
+    credit:"제육이다 · 매일올레시장점 / Maeil Olle Market, Jeju"
+  },
+  en:{
+    badge:"NOTICE",
+    eyebrow:"Seogwipo Healing Forest",
+    title:"A Small Way to Take the Forest Home",
+    intro:[
+      "We've captured the creatures of Seogwipo's Healing Forest on a single sticker sheet.",
+      "Stick these small forest lives onto your tin case to create one that's uniquely yours.",
+      "May today's lunch box become a small keepsake that reminds you of Jeju."
+    ],
+    footer:[
+      "Once used, this tin case is not recommended for reuse as food storage.",
+      "Give it new life as a trinket box, seed box, or sticker/ticket case."
+    ],
+    qrCaption:"Scan to learn more",
+    credit:"제육이다 (JEYUKIDA) · Maeil Olle Market, Jeju"
+  },
+  ja:{
+    badge:"お知らせ",
+    eyebrow:"西帰浦ヒーリングの森",
+    title:"森を持ち帰る小さな方法",
+    intro:[
+      "西帰浦(ソグィポ)ヒーリングの森で出会える生き物たちを、一枚のステッカーに込めました。",
+      "森を作る小さな生き物たちを缶ケースに貼って、世界に一つだけの缶ケースを作ってみてください。",
+      "今日のお弁当が、済州島を思い出す小さな記念品になりますように。"
+    ],
+    footer:[
+      "一度使用した缶ケースは、食品保存用としての再利用はおすすめしません。",
+      "小物入れ、種の保管箱、ステッカー・チケット入れなど新しい用途で活用してください。"
+    ],
+    qrCaption:"スキャンして詳しく見る",
+    credit:"제육이다(ジェユキダ)・毎日オルレ市場店"
+  },
+  zh:{
+    badge:"公告",
+    eyebrow:"西归浦疗愈森林",
+    title:"带走森林的小方法",
+    intro:[
+      "我们把西归浦疗愈森林里能遇见的生命,都收进了这一张贴纸里。",
+      "把组成这片森林的小生命贴在铁盒上,做一个独一无二、只属于你的铁盒吧。",
+      "希望今天的这份便当,能成为让你记住济州岛的小小纪念品。"
+    ],
+    footer:[
+      "使用过一次的铁盒,不建议再用于食品保存。",
+      "不妨把它变成小物收纳盒、种子盒或贴纸·票券收纳盒,开始新的用途。"
+    ],
+    qrCaption:"扫码了解更多",
+    credit:"제육이다(济育伊达)· 每日Olle市场店"
+  }
+};
+
+let currentLang = "ko";
+
+function paragraphs(lines){
+  return lines.map(l => `<p>${l}</p>`).join("");
+}
+
+function render(lang){
+  currentLang = lang;
+  document.documentElement.setAttribute("data-lang", lang);
+
+  document.querySelectorAll("[data-lang-btn]").forEach(btn=>{
+    btn.setAttribute("aria-pressed", btn.dataset.langBtn === lang ? "true" : "false");
+  });
+
+  const c = CONTENT[lang];
+  document.querySelector('[data-i18n="badge"]').textContent = c.badge;
+  document.querySelector('[data-i18n="eyebrow"]').textContent = c.eyebrow;
+  document.querySelector('[data-i18n="title"]').textContent = c.title;
+  document.querySelector('[data-i18n-html="intro"]').innerHTML = paragraphs(c.intro);
+  document.querySelector('[data-i18n-html="footer"]').innerHTML = paragraphs(c.footer);
+  document.querySelector('[data-i18n="qrCaption"]').textContent = c.qrCaption;
+  document.querySelector('[data-i18n="credit"]').textContent = c.credit;
+
+  const guide = document.querySelector("[data-i18n-sections]");
+  guide.innerHTML = CATEGORY_ORDER.map(catKey=>{
+    const items = ITEMS[catKey];
+    const name = SECTION_NAMES[lang][catKey];
+    const itemsHtml = items.map(it=>`
+      <div class="item">
+        <div class="chip"><img src="icons/${it.icon}" alt="${it[lang]}" /></div>
+        <span class="item-name">${it[lang]}</span>
+      </div>
+    `).join("");
+    return `
+      <div class="section">
+        <div class="section-head">
+          <span class="section-title">${name}</span>
+          <span class="section-count">${items.length}</span>
+        </div>
+        <div class="items">${itemsHtml}</div>
+      </div>
+    `;
+  }).join("");
+}
+
+document.querySelectorAll("[data-lang-btn]").forEach(btn=>{
+  btn.addEventListener("click", ()=> render(btn.dataset.langBtn));
+});
+
+render(currentLang);
+</script>
